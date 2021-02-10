@@ -1,0 +1,514 @@
+body{
+    margin:0px;
+    padding:0px;
+    font-size:25px;
+    height : 100vh;
+}
+
+*{
+    font-family: "Sansation";
+}
+
+*:focus{
+    outline:none;
+}
+
+#signup-container{
+    width : 100%;
+    height : 100vh;
+    background-image: url(../Images/bg5.jpg);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    background-size: cover;
+}
+
+
+
+#form-container{
+    width: 700px;
+    height : 70vh;
+    display:flex;
+    justify-items: center;
+    background-color:  white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
+    border-width: 5px;
+    font-size: 25px;
+}
+
+#left-container{
+    width:50%;
+
+}
+
+#right-container{
+    width:50%;
+
+}
+
+
+
+
+#logo{
+    height:100px;
+    float:left;
+    position:relative;
+    top:80px;
+    left:40px;
+}
+
+#signup-text{
+    font-size: 40px;
+    margin-top:100px;
+    margin-left:130px;
+}
+
+.form-content{
+    margin-left:80px;
+    border:none;
+    border-bottom: 2px solid #AAA;
+    width: 200px;
+    height: 30px;
+    margin-top: 30px;
+    font-size: 17px;
+}
+
+input[type="submit"] {
+    margin-top: 60px;
+    width: 150px;
+    height: 40px;
+    background: #16a085;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-weight: 900;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: 0.1s ease;
+    cursor: pointer;
+    margin-left:80px;
+  }
+
+  input[type="submit"]:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+  }
+
+  input[type="submit"]:active {
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+  }
+
+  input[type="text"]:hover,
+  input[type="password"]:hover {
+    border-bottom: 2px solid black;
+    color: black;
+    transition: 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-bottom: 3px solid #16a085;
+  color: #16a085;
+  transition: 0.3s ease;
+}
+
+
+#signin-link{
+    margin-left: 80px;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+#link{
+    text-decoration: none;
+}
+
+#social-media-text{
+    font-size: 15px;
+    font-weight: bold;
+    position:relative;
+    top: 200px;
+    left: 60px;
+}
+
+.login-option{
+    margin-left:60px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button.login-option:hover{
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.login-option-text{
+    margin-left:20px;
+}
+
+#facebook{
+    margin-top:230px;
+    background-color:  #32508E;
+}
+
+#github{
+    margin-top: 30px;
+    background-color: black;
+}
+
+#google{
+    margin-top: 30px;
+    background-color:#DD4B39;
+}
+
+.login-logo{
+    height:80%;
+    vertical-align: middle;
+    
+    margin-right:20px;
+}
+
+@font-face {
+    font-family: "Sansation";
+    src: url('../fonts/sansation_regular-webfont.woff') format('woff'), url('../fonts/sansation_regular-webfont.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: "Sansation";
+    src: url('../fonts/sansation_light-webfont.woff') format('woff'), url('../fonts/sansation_light-webfont.ttf') format('truetype');
+    font-weight: light;
+  }
+
+  @media only screen and (max-width: 700px) {
+    
+
+    #form-container{
+        width:550px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    
+
+    #form-container{
+        width:300px;
+        height:65vh;
+        flex-direction: column;
+    }
+
+    #signup-text{
+        margin-top: 50px;
+        font-size: 20px;
+    }
+
+    #logo{
+        left: 80px;
+        top:35px;
+        height:60px;
+    }
+
+
+#left-container{
+    width:100%;
+
+}
+
+#right-container{
+    width:100%;
+}
+
+#social-media-text{
+    top:0px;
+    left:80px;
+    width:200px;
+    font-size: 10px;
+}
+
+#facebook{
+    margin-top: 0px;
+}
+
+
+.login-option{
+    margin-left:80px;
+    width: 140px;
+    height: 20px;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.form-content{
+    height:15px;
+    margin-top:20px;
+    font-size:10px;
+    width:140px;
+}
+    
+input[type="submit"] {
+    margin-top: 30px;
+    width: 100px;
+    height: 30px;
+    font-size: 10px;
+    
+    margin-left:80px;
+  }
+
+  #signin-link{
+      font-size:10px;
+  }
+
+
+}
+
+@media only screen and (max-height: 750px){
+
+    #form-container{
+        width:300px;
+        height:75vh;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-height: 600px){
+
+    #form-container{
+        width:300px;
+        height:90vh;
+        flex-direction: column;
+    }
+}
+
+
+
+
+#homepage_footer_container {
+    display: flex;
+    justify-content: center;
+    background-color: #26262b;
+    width: 100%;
+  }
+  
+  #homepage_footer_main_box {
+    width: 50%;
+  }
+  
+  #homepage_footer_title {
+    color: grey;
+    font-size: 72px;
+    font-weight: bold;
+    margin: 40px 0px 0px 0px;
+  }
+  
+  #homepage_footer_subtitle {
+    color: grey;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 20px 0px 0px 0px;
+  }
+  
+  .homepage_footer_icons {
+    background-color: grey;
+    border-radius: 50%;
+    float: left;
+    margin-top: 20px; 
+    margin-left: 10px; 
+    margin-right: 10px; 
+    padding: 10px;
+    transition: 0.5s;
+  }
+  
+  .homepage_footer_icons:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+  .homepage_footer_widgets {
+    height: 30px;
+    width: 30px;
+  }
+  
+  #homepage_footer_widget_mail {
+    background-image: url("../Images/email_white.png");
+    background-size: cover;
+  }
+  
+  #homepage_footer_widget_github {
+    background-image: url("../Images/github2.png");
+    background-size: cover;
+  }
+  
+  #homepage_footer_widget_facebook {
+    background-image: url("../Images/facebook2.png");
+    background-size: cover;
+  }
+  
+  #homepage_footer_widget_wechat {
+    background-image: url("../Images/wechat.png");
+    background-size: cover;
+  }
+
+  #homepage_footer_widget_sponsor {
+    background-image: url("../Images/hezuowoshou.png");
+    background-size: cover;
+  }
+  
+  #homepage_footer_widget_linkedin {
+    background-image: url("../Images/linkedin_white.png");
+    background-size: cover;
+  }
+  
+  
+  #logo_footer {
+    width: 200px;
+    height: 200px;
+    margin-top: 40px;
+    margin-left: 120px;
+  }
+  
+  #footer_icon_container {
+    height: 70px;
+    /* margin-top: 20px; */
+    width:100%;
+    display: flex;
+  justify-content: center;
+  }
+  
+  
+  
+  
+  
+  
+  #wechat {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: -500px;
+    left: -200px;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: -1;
+  }
+
+  #sponsor {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: -500px;
+    left: -200px;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: -1;
+  }
+  
+  #copyright {
+    text-align: center;
+    background-color: #26262b;
+    padding-top:20px;
+    padding-bottom:20px;
+    color: white;
+    font-size: 15px;
+  }
+  
+  
+  #homepage_footer_mission_title {
+    color: #A9A9A9;
+    font-size: 20px;
+    margin: 75px auto 0px auto;
+    text-align: center;
+    width: 75%;
+  }
+  
+  #homepage_footer_links_title {
+    border-bottom: 2px solid grey;
+    color: grey;
+    font-size: 32px;
+    margin: 75px 0px 15px 75px;
+    padding: 0px 0px 5px 0px;
+  }
+  
+  .homepage_footer_links_box {
+    margin: 5px 0px 0px 55px;
+    width: 145px;
+  }
+  
+  .homepage_footer_links {
+    color: grey;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    transition: 0.5s;
+  }
+  
+  .homepage_footer_links_box:hover {
+    background-color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  
+@media only screen and (max-width: 600px) {
+
+    #wechat {
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      top: -300px;
+      left: -200px;
+      opacity: 0;
+      transition: 0.5s;
+      z-index: -1;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 480px) {
+    #homepage_footer_main_box{
+      width:85%;
+      
+    }
+    #homepage_footer_mission_title {
+      font-size: 15px;
+    }
+  
+    .titles {
+      top: -400px;
+      font-size: 30px;
+    }
+  
+    #copyright {
+      font-size: 10px;
+    }
+  
+    .homepage_footer_widgets {
+      height: 20px;
+      width: 20px;
+    }
+  
+    .homepage_footer_icons {
+      background-color: grey;
+      border-radius: 50%;
+      float: left;
+      margin-top: 20px; 
+      margin-bottom: 10px;
+      margin-left: 10px; 
+      margin-right: 10px; 
+      padding: 10px;
+      transition: 0.5s;
+    }
+  }
+
+

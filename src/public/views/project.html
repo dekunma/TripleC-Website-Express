@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Triple C Project Page</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/project.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        // Split array into groups of {{ chunk_size }}
+        function chunkArray(myArray, chunk_size) {
+            let index = 0;
+            let arrayLength = myArray.length;
+            let result = [];
+
+            for (index = 0; index < arrayLength; index += chunk_size) {
+                myChunk = myArray.slice(index, index + chunk_size);
+                result.push(myChunk);
+            }
+
+            return result;
+        }
+
+        $(document).ready(function () {
+            // Fetch all projects
+            $.ajax({
+                type: "POST",
+                url: "https://new.ucsdtriplec.org:8443/api/projects/all",
+                data: {},
+                success: function (data) {
+                    let { projects } = data;
+                    let projectsNavList = document.getElementById('projects-list-nav');
+                    let projectsDropdownList = document.getElementById('projects-list-dropdown');
+                    // This should be shared by both list
+                    let innerHTML = projectsNavList.innerHTML;
+
+                    if (projects == null) {
+                        return;
+                    }
+                    projects.forEach(element => {
+                        innerHTML += '<li><a href="/project/' + element.id + '">' + element.name + '</a></li>'
+                    });
+
+                    projectsNavList.innerHTML = innerHTML;
+                    projectsDropdownList.innerHTML = innerHTML;
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+
+
+            // Fetch current project
+            const stringParams = ['name', 'introTitle', 'introText']
+            const groupSize = 3;
+
+            let routePaths = window.location.pathname.split('/');
+            let id = routePaths[routePaths.length - 1];
+            $.ajax({
+                type: "POST",
+                url: "https://new.ucsdtriplec.org:8443/api/project/" + id,
+                data: {},
+                success: function (data) {
+
+                    let { project, projectImages } = data;
+
+                    // Error page redirect
+                    if (project == null) {
+                        window.location.href = '/error';
+                    }
+
+                    // Add absolutely non-null elements
+                    stringParams.forEach(param => {
+                        document.getElementById(param).innerHTML = project[param];
+                    })
+                    document.getElementById('coverImg').setAttribute('src', project.coverImg);
+
+                    // Add nullable elements, delete sections if null
+                    if (project.timeline != null) {
+                        document.getElementById('timeline').setAttribute('src', project.timeline);
+                    } else {
+                        let element = document.getElementById('project_timeline_container');
+                        element.parentNode.removeChild(element);
+                        let nav = document.getElementById('project_nav_timeline');
+                        nav.parentNode.removeChild(nav);
+                    }
+
+                    if (projectImages.length) {
+                        let chunkProjectImages = chunkArray(projectImages, groupSize);
+                        let demoImagesBoard = document.getElementById('demo-images');
+                        let boardInnerHtml = '';
+                        chunkProjectImages.forEach(chunk => {
+                            let tmpHtml = ' <div class="imgstack">';
+                            chunk.forEach(img => {
+                                let { link } = img;
+                                tmpHtml += '<a href="' + link + '" target="_black"><img src="' + link + '" alt /></a>';
+                            })
+                            tmpHtml += '</div>';
+                            boardInnerHtml += tmpHtml;
+                        })
+                        demoImagesBoard.innerHTML = boardInnerHtml;
+                    } else {
+                        let element = document.getElementById('project_demo_container');
+                        element.parentNode.removeChild(element);
+                        let nav = document.getElementById('project_nav_demo');
+                        nav.parentNode.removeChild(nav);
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "https://new.ucsdtriplec.org:8443/api/members/" + id,
+                data: {},
+                success: function (data) {
+                    let { members } = data;
+                    if (members == null) return;
+                    let memberBoardInnerHtml = '';
+                    members.forEach(member => {
+                        let { avatar, github, linkedin } = member;
+                        let avatarHtml = "/assets/Images/default-avatar.png";
+                        let githubHtml = '';
+                        let linkedinHtml = '';
+                        if (avatar != null) {
+                            avatarHtml = avatar;
+                        }
+                        if (github != null && github.length) {
+                            githubHtml = '<a href="' + github + '" target="_black">' +
+                                '<i class="fab fa-github"></i>' +
+                                '</a>';
+                        }
+                        if (linkedin != null && linkedin.length) {
+                            linkedinHtml = '<a href="' + linkedin + '" target="_black">' +
+                                '<i class="fab fa-linkedin"></i>' +
+                                '</a>';
+                        }
+                        memberBoardInnerHtml += '<div class="column">' +
+                            '<div class="card">' +
+                            '<img class="card_avatar" src="' + avatarHtml + '" alt="Quinton" style="width:100%">' +
+                            '<div class="memberBox">' +
+                            '<h2>' + member.name + '</h2>' +
+                            '<p class="title">' + member.position + '</p>' +
+                            '<div class="social">' + linkedinHtml + githubHtml +
+                            '<a href="mailto: ' + member.email + '">' +
+                            '<i class="fas fa-envelope-square"></i>' +
+                            '</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                    })
+                    if (!memberBoardInnerHtml.length) {
+                        let element = document.getElementById('project_member_container');
+                        element.parentNode.removeChild(element);
+                        let nav = document.getElementById('project_nav_team');
+                        nav.parentNode.removeChild(nav);
+                    }
+                    document.getElementById('members-board').innerHTML += memberBoardInnerHtml;
+                },
+                error: function (e) {
+                    alert("Server error");
+                    console.log(e);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="projectpage_background">
+        <div id="homepage_cover">
+            <div class="navbar_line">
+                <div class="navbar_logo">
+                    <button class="navbar_logo_button">
+                        <a href="/"><img src="/assets/Images/logo.png" alt="">
+                            <span>Triple C</span></a>
+                    </button>
+                </div>
+                <nav class="navbar">
+                    <ul class="navbar_ul_list" href="/">
+                        <li style="height:50px;overflow:hidden;position:relative;">
+                            <div id="hello_container">
+                                <p id="hello_container_text">
+                                    Hello
+                                </p>
+                                <ul id="hello_container_list">
+                                    <li class="hello_container_list_item">World !</li>
+                                    <li class="hello_container_list_item">Triple C !</li>
+                                    <li class="hello_container_list_item">Developers !</li>
+                                    <li class="hello_container_list_item">Designers !</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="navbar_desktop_li"><a href="/#homepage_aboutUs">About</a></li>
+                        <li class="navbar_desktop_li"><a href="/#announcement">Events</a></li>
+                        <li class="navbar_desktop_li"><a href="/#homepage_photos">Photos</a></li>
+                        <li class="navbar_desktop_li"><a href="/team">Members</a></li>
+                        <li class="navbar_desktop_li"><a href="">Projects
+                                <i class=" fas fa-angle-down"></i>
+                            </a>
+                            <ul id="projects-list-nav" class="projects_li">
+                            </ul>
+
+                        <li class="navbar_mobile_li">
+                            <a href="../ContactUs.html">
+                                <button id="nav_contact_button">
+                                    Contact Us
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+                <div id="menuToggle">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="nav_bar_menu">
+                        <a href="/">
+                            <li>
+                                <i class="fas fa-home"></i>
+                                Home
+                            </li>
+                        </a>
+                        <a href="#announcement">
+                            <li>
+                                <i class="far fa-calendar-alt"></i>
+                                Event Timeline
+                            </li>
+                        </a>
+                        <a href="#homepage_photos">
+                            <li>
+                                <i class="far fa-images"></i>
+                                Photo Gallery
+                            </li>
+                        </a>
+                        <a href="/team">
+                            <li>
+                                <i class="fas fa-users"></i>
+                                Team Members
+                            </li>
+                        </a>
+                        <li id="projects_list">
+
+                            <a href=""><i class="fas fa-briefcase"></i>
+                                Projects
+                                <i class="fas fa-angle-down"></i> </a>
+                            <ul id="projects-list-dropdown" class="projects_ul">
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div id="projectpage_title">
+                <span id="projectpage_title_text" style="border-bottom: 3px solid #CCA374;"><span
+                        id="name"></span></span>
+                <div class="tech">
+                </div>
+            </div>
+
+            <div id="projectpage_navigation">
+                <nav>
+                    <a id='project_nav_description' href="#projectpage_description">Description</a>
+                    <a id='project_nav_demo' href="#projectpage_demo">Demo</a>
+                    <a id='project_nav_timeline' href="#projectpage_timeline">Timeline</a>
+                    <a id='project_nav_team' href="#projectpage_team">Team</a>
+                </nav>
+            </div>
+    </div>
+    <div id="projectpage_description">
+
+        <div id="projectpage_description_content">
+
+            <div class="projectpage_des_content">
+                <div id="projectpage_description_subtitle">
+                    <h2 id="introTitle" class="projectpage_sub_title"></h2>
+                </div>
+                <div id="introText" class="des_content">
+
+                </div>
+            </div>
+            <img class="des_pic" id="coverImg">
+        </div>
+    </div>
+
+    <div style="background-color: #343436;">
+        <!-- project demo -->
+        <div id="project_demo_container">
+            <h1 class="projectpage_sub_title">Project Demo</h1>
+            <div id="projectpage_demo">
+                <div id="demo-images">
+                </div>
+            </div>
+        </div>
+        
+        <!-- project timeline -->
+        <div id="project_timeline_container">
+            <h1 class="projectpage_sub_title">Project Timeline</h1>
+            <div id="projectpage_timeline">
+                <img style="margin:auto" id="timeline" src="" alt="">
+            </div>
+        </div>
+
+            <!-- project team -->
+
+        <div id="project_member_container">
+            <h2 class="projectpage_sub_title"><span id="changeColor">Our</span> Team</h2>
+            <div id="projectpage_team">
+                <div id="members-board" class="row"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <footer id="homepage_footer_container">
+
+        <div id="homepage_footer_main_box">
+            <div id="homepage_footer_mission_title">
+                "Make It Happen"
+            </div>
+            <div id="footer_icon_container">
+                <div class="homepage_footer_icons" onclick="window.open('mailto:ucsdtriplec@gmail.com')">
+                    <div id="homepage_footer_widget_mail" class="homepage_footer_widgets">
+                    </div>
+                </div>
+                <div class="homepage_footer_icons" onclick="window.open ('https://github.com/ucsdtriplec')">
+                    <div id="homepage_footer_widget_github" class="homepage_footer_widgets">
+                    </div>
+                </div>
+
+                <div class="homepage_footer_icons" onclick="window.open ('https://www.facebook.com/ucsdtriplec')">
+                    <div id="homepage_footer_widget_facebook" class="homepage_footer_widgets">
+                    </div>
+                </div>
+
+                <div class="homepage_footer_icons" onmouseover="showImg('wechat')" onmouseout="hideImg('wechat')">
+
+                    <div id="homepage_footer_widget_wechat" class="homepage_footer_widgets">
+                        <img id='wechat' src="/assets/Images/wechatQR.JPG">
+                    </div>
+
+                </div>
+
+                <div class="homepage_footer_icons"
+                    onclick="window.open('https://www.linkedin.com/company/ucsd-chinese-computer-community/')">
+                    <div id="homepage_footer_widget_linkedin" class="homepage_footer_widgets">
+                    </div>
+                </div>
+
+                <div class="homepage_footer_icons" onclick="window.open('./Sponsor.html')">
+                    <div id="homepage_footer_widget_sponsor" class="homepage_footer_widgets">
+                        <img id='sponsor' src="/assets/Images/hezuowoshou.png">
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="copyright">
+                Copyright &copy 2019 UCSDTripleC.
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+<script>
+
+    function showImg(id) {
+        document.getElementById(id).style.opacity = 1;
+        document.getElementById(id).style.zIndex = "1";
+    }
+
+    function hideImg(id) {
+        document.getElementById(id).style.opacity = 0;
+        document.getElementById(id).style.zIndex = "-1";
+
+    }
+</script>
+
+</html>

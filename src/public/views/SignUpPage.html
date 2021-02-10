@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="../css/SignUpPage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <div id = "signup-container">
+        <div id = "form-container" class = "hhh">
+            <div id = "left-container">
+
+            <img id="logo" src="../favicon_package_v0.16/mstile-150x150.png" alt="#">
+            <p id = "signup-text">Sign Up</p>
+                <form action="/action_page.php">
+                    <input class = "form-content" type="text" name="E-mail" placeholder="E-mail" >
+                    <input class = "form-content" type="password" name="password" placeholder="password" >
+                    <input class = "form-content" type="password" name="password" placeholder="confirm password">
+                    <br>
+                    <input type="submit"  value="Submit">
+                  </form> 
+            
+            <div id= "signin-link">
+                Already have a account? Try <span><a href="#" id = "link">Sign in</a></span>
+            </div>
+            </div>
+
+            <div id = "right-container">
+                <p id = "social-media-text"> log in with social medias:</p>
+                <button id = "facebook" class = "login-option"> <img class="login-logo" src="../Images/facebook.png" > log in with facebook</button>
+                <button id = "github" class = "login-option"><img class="login-logo" src="../Images/github2.png" >log in with github</button>
+                <button id = "google" class = "login-option" > <img class="login-logo" src="../Images/google.png" > log in with google</button>
+            </div>
+        </div>
+
+    </div>
+
+
+  <footer id="homepage_footer_container">
+
+        <div id="homepage_footer_main_box">
+          <div id="homepage_footer_mission_title">
+            "Make It Happen"
+          </div>
+          <div id="footer_icon_container">
+            <div class="homepage_footer_icons" onclick="window.open('mailto:ucsdtriplec@gmail.com')">
+              <div id="homepage_footer_widget_mail" class="homepage_footer_widgets">
+              </div>
+            </div>
+            <div class="homepage_footer_icons" onclick="window.open ('https://github.com/ucsdtriplec')">
+              <div id="homepage_footer_widget_github" class="homepage_footer_widgets">
+              </div>
+            </div>
+    
+            <div class="homepage_footer_icons" onclick="window.open ('https://www.facebook.com/ucsdtriplec')">
+              <div id="homepage_footer_widget_facebook" class="homepage_footer_widgets">
+              </div>
+            </div>
+    
+            <div class="homepage_footer_icons" onmouseover="showImg('wechat')" onmouseout="hideImg('wechat')">
+    
+              <div id="homepage_footer_widget_wechat" class="homepage_footer_widgets">
+                <img id='wechat' src="../Images/wechatQR.JPG">
+              </div>
+    
+            </div>
+    
+            <div class="homepage_footer_icons" onclick="window.open('https://www.linkedin.com/company/ucsd-chinese-computer-community/')">
+              <div id="homepage_footer_widget_linkedin" class="homepage_footer_widgets">
+              </div>
+            </div>
+    
+            <div class="homepage_footer_icons" onclick="window.open('./Sponsor.html')">
+              <div id="homepage_footer_widget_sponsor" class="homepage_footer_widgets">
+                <img id='sponsor' src="../Images/hezuowoshou.png">
+              </div>
+              </div>
+          </div>
+          <div id="copyright">
+            Copyright &copy 2019 UCSDTripleC.
+          </div>
+        </div>
+      </footer>
+
+
+      <script>
+      function showImg(id)
+      {
+        document.getElementById(id).style.opacity = 1;
+        document.getElementById(id).style.zIndex = "1";
+      }
+
+      function hideImg(id){
+        document.getElementById(id).style.opacity = 0;
+        document.getElementById(id).style.zIndex = "-1";
+
+      }
+      </script>
+    
+</body>
+
+</html>

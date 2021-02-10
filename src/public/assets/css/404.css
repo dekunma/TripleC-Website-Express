@@ -1,0 +1,40 @@
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+  background-color: #26dcd0;
+}
+
+.clearfix {
+  clear: both;
+}
+
+#background_picture {
+  background-image: url("../Images/error.png");
+  background-size: cover;
+  float: left;
+  height: 60vh;
+  margin: 10vh 0px 0px 15%;
+  width: 25%;
+}
+
+#background_title {
+  color: white;
+  float: left;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 15vh 0px 0px 5%;
+  text-align: center;
+  width: 25%;
+}
+
+#background_subtitle {
+  color: white;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 25px 0px 0px 5%;
+  text-align: center;
+  width: 25%;
+}

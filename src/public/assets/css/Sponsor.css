@@ -1,0 +1,44 @@
+body {
+  
+    background-color: black;
+  }
+  
+  #banner {
+    
+    background-color:black;
+    background-size: cover;
+  }
+
+  .container {
+    background-color: black;
+  }
+
+  .navbar{
+    background-color: black;
+  }
+
+  .container-fluid text-center{
+    background-color: black;
+  }
+
+  .col-sm-4{
+      background-color: black;
+  }
+
+
+  .panel{
+      background-color: black;
+  }
+
+  .panel-heading{
+    background-color: black;
+}
+
+.panel-footer{
+    background-color: black;
+}
+
+.panel-body{
+    background-color: black;
+}
+

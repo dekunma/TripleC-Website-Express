@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Triple C Project Page</title>
+      <link rel="stylesheet" type="text/css" href="../css/loadingPage.css">
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="content">
+      <div class="content__container">
+        <p class="content__container__text">Hello</p>
+        <ul class="content__container__list">
+          <li class="content__container__list__item">World !</li>
+          <li class="content__container__list__item">Triple C !</li>
+          <li class="content__container__list__item">Developers !</li>
+          <li class="content__container__list__item">Designers !</li>
+        </ul>
+      </div>
+
+      <p id="count">6</p>
+      <div style="text-align:center"><a id="switch" href="../index.html">go to home page</a></div>
+    </div>
+  </body>
+
+  <script>
+    function countTime(){
+      document.getElementById("count").innerHTML = document.getElementById("count").innerHTML - 1;
+      if( document.getElementById("count").innerHTML != "0" ){
+        setTimeout( countTime,1000);
+      }
+      if(document.getElementById("count").innerHTML == "0"){
+        window.location = "../index.html";
+      }
+    }
+    countTime()
+  </script>
+</html>

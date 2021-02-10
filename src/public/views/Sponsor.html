@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sponsor</title>
+ 
+  <link href="/assets/css/style.css"  type="text/css" rel="stylesheet">
+  <link href="/assets/css/Sponsor.css"  type="text/css" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_package_v0.16/favicon.ico" />  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+  
+    body,html{
+      margin:0;
+      width:100%;
+    }
+    html{
+      background-color: gray;
+    }
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+      background-color: black;
+    }
+      
+    /* Remove the jumbotron's default bottom margin */ 
+    .jumbotron {
+      margin-bottom: 0;
+      background-color: black;
+    }
+  
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: black;
+      padding: 25px;
+    }
+    .container {
+      background-color: black;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        width: 100%;
+      }
+    }
+    
+    .navbar{
+      background-color: black;
+    }
+
+    .container-fluid text-center{
+      background-color: black;
+    }
+
+    .col-sm-4{
+        background-color: black;
+    }
+
+
+    .panel{
+        background-color: black;
+    }
+
+    .panel-head{
+      background-color: black;
+  }
+
+  .panel-footer{
+      background-color: black;
+  }
+
+  .panel-bod{
+      width: 300px;
+      height: 0px;
+      background-size: 10px 10px;
+      background-color: black;
+      margin: -25px;
+      border: 1px black;
+  }
+
+  .panel panel-danger{
+      background-color: black;
+  }
+
+  .panel panel-success{
+      background-color: black;
+  }
+  .panel panel-primary{
+      background-color: black;
+  }
+
+  /* img.resize {
+    width:300px;
+    height:100px;
+  } */
+
+  </style>
+</head>
+<body>
+
+
+        <div class="navbar_line">
+          <div class="navbar_logo">
+            <button class="navbar_logo_button">
+              <a href="/"><img src="/assets/Images/logo.png" alt="">
+                <span>Triple C</span></a>
+            </button>
+          </div>
+          <nav class="navbar">
+            <ul class="navbar_ul_list" href="/">
+              <li style="height:50px;overflow:hidden;position:relative;">
+                <div id="hello_container">
+                  <p id="hello_container_text">
+                    Hello
+                  </p>
+                  <ul id="hello_container_list">
+                    <li class="hello_container_list_item">World !</li>
+                    <li class="hello_container_list_item">Triple C !</li>
+                    <li class="hello_container_list_item">Developers !</li>
+                    <li class="hello_container_list_item">Designers !</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="navbar_desktop_li"><a href="../index.html#homepage_aboutUs">About</a></li>
+              <li class="navbar_desktop_li"><a href="../index.html#announcement">Events</a></li>
+              <li class="navbar_desktop_li"><a href="../index.html#homepage_photos">Photos</a></li>
+              <li class="navbar_desktop_li"><a href="Team.html">Members</a></li>
+              <li class="navbar_desktop_li" style="z-index: 1"><a href="">Projects
+                  <i class=" fas fa-angle-down"></i>
+                </a>
+                <ul class="projects_li">
+                  <li><a href="projectPage_flyerfighter.html">FlyerFighter</a></li>
+                  <li><a href="projectPage_androidtryway.html">Android App</a></li>
+                  <li><a href="projectPage_datascience.html">Data Science</a></li>
+                  <li><a href="projectPage_officialwebsite.html">Official Website</a></li>
+                  <li><a href="projectPage_infolder.html">Infolder Website</a></li>
+                  <li><a href="projectPage_kaggle.html">Kaggle</a></li>
+                  <li><a href="projectPage_meetful.html">Meetful</a></li>
+                  <li><a href="projectPage_jobaid.html">Jobaid</a></li>
+                  <li><a href="projectPage_lyrichub.html">LyricHub</a></li>
+                </ul>
+              </li class="navbar_desktop_li">
+    
+              <li class="navbar_mobile_li">
+                <a href="../ContactUs.html">
+                  <button id="nav_contact_button">
+                    Contact Us
+                  </button>
+                </a>
+              </li>
+            </ul>
+    
+          </nav>
+          <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="nav_bar_menu">
+              <a href="/">
+                <li>
+                  <i class="fas fa-home"></i>
+                  Home
+                </li>
+              </a>
+              <a href="#announcement">
+                <li>
+                  <i class="far fa-calendar-alt"></i>
+                  Event Timeline
+                </li>
+              </a>
+              <a href="#homepage_photos">
+                <li>
+                  <i class="far fa-images"></i>
+                  Photo Gallery
+                </li>
+              </a>
+              <a href="Team.html">
+                <li>
+                  <i class="fas fa-users"></i>
+                  Team Members
+                </li>
+              </a>
+              <li id="projects_list">
+    
+                <a href=""><i class="fas fa-briefcase"></i>
+                  Projects
+                  <i class="fas fa-angle-down"></i> </a>
+                <ul class="projects_ul">
+                  <li><a href="projectPage_flyerfighter.html">FlyerFighter</a></li>
+                  <li><a href="projectPage_androidtryway.html">Android App</a></li>
+                  <li><a href="projectPage_datascience.html">Data Science</a></li>
+                  <li><a href="projectPage_officialwebsite.html">Official Web</a></li>
+                  <li><a href="projectPage_infolder.html">Infolder website</a></li>
+                  <li><a href="projectPage_kaggle.html">kaggle</a></li>
+                  <li><a href="projectPage_meetful.html">Meetful</a></li>
+                  <li><a href="projectPage_jobaid.html">Jobaid</a></li>
+                  <li><a href="projectPage_lyrichub.html">Lyrichub</a></li>
+                </ul>
+              </li>
+            </ul>
+    
+          </div>
+        </div>
+
+
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1 style="font-size:500%; color:white;">Thank you </h1>      
+    <h2 style="font-size:800%; color:white">SPONSORS</h2>
+  </div>
+</div>
+
+
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel">
+        <div class="panel-head"><br></div>
+        <div class="panel-body"><img src="/assets/Images/Sponsors/coming-soon.png" class="img-responsive" style="width:200%" alt="Image"></div>
+        <!-- <div class="panel-footer"><br></div> -->
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel">
+        <div class="panel-head"><br></div>
+        <div class="panel-body"><img src="/assets/Images/Sponsors/coming-soon.png" class="img-responsive" style="width:100" alt="Image"></div>
+        <!-- <div class="panel-footer"><br></div> -->
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel">
+        <div class="panel-head"><br></div>
+        <div class="panel-body"><img src="/assets/Images/Sponsors/coming-soon.png" class="img-responsive" style="width:100" alt="Image"></div>
+        <!-- <div class="panel-footer"><br></div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel">
+        <div class="panel-head"><br></div>
+        <div class="panel-body"><img src="/assets/Images/Sponsors/coming-soon.png" class="img-responsive" style="width:600px height: 100px;color: black;" alt="Image"></div>
+        <!-- <div class="panel-footer"><br></div> -->
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel">
+        <div class="panel-head"><br></div>
+        <div class="panel-body"><img src="/assets/Images/Sponsors/coming-soon.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <!-- <div class="panel-footer"><br></div> -->
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel">
+        <div class="panel-head"><br></div>
+        <div class="panel-body"><img src="/assets/Images/Sponsors/coming-soon.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <!-- <div class="panel-footer"><br></div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

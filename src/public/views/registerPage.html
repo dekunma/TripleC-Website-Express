@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <title>Register Page</title>
+                <link rel="stylesheet" type="text/css" href="../css/registerPage.css">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        </head>
+
+        <body>
+            <div id="container">
+                <div id="input-container">
+                        <img id="logo" src="../favicon_package_v0.16/mstile-150x150.png" alt="#">
+                        <p id="register-title"> Register our activity</p>
+                        
+                        <input class = "form-content" type="text" id="name" name="name" placeholder="name" maxlength="15" >
+                        <input class = "form-content" type="text" id="E-mail" name="E-mail" placeholder="E-mail" maxlength="30"  >
+                        <br>
+                        <span class="tooltip" id="name-tooltip"> The name cannot be empty</span>
+                        <span class="tooltip" id="email-tooltip"> The E-mail cannot be empty</span>
+                        <input type="submit" onClick="addRow()" value="Submit">
+                        <div id="hover_success"><p class="close" onclick="closeButton()"></p > <div id = "success_title">Submited! </div><div id="success_text">you have successfully registered our activity!</div></div>
+                </div>
+                
+                <div id="table-container">
+                    <div id = "table">
+                    <table id="info">
+                        <thead id="table-head">
+                        <tr>
+                            <th class="head-text">Name</th>
+                            <th class="head-text">E-mail</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="table-body">
+                            </tbody>
+                    </table>
+                </div>
+                <div id="data_download">
+                    <a id="download" onclick="downloadData()">Download</a>
+                </div>
+                    </div>
+    
+
+
+            </div>
+
+            <script>
+
+            function closeButton(){
+                document.getElementById("hover_success").style.zIndex="-1";
+            }
+            var data = new Object();
+            data.name= [];
+            data.mail = [];
+
+            function addRow() {
+
+                document.getElementById("name-tooltip").style.visibility="hidden";
+                document.getElementById("email-tooltip").style.visibility="hidden";
+                document.getElementById("email-tooltip").innerText="The E-mail cannot be empty"
+                if(document.getElementById("name").value==""){
+                    document.getElementById("name-tooltip").style.visibility="visible";
+                }
+                if(document.getElementById("E-mail").value==""){
+                    document.getElementById("email-tooltip").style.visibility="visible";
+                }
+                else if(!document.getElementById("E-mail").value.includes("@") || !document.getElementById("E-mail").value.includes(".")){
+                    document.getElementById("email-tooltip").innerText="invalid E-mail "
+                    document.getElementById("email-tooltip").style.visibility="visible";
+                }
+                if(document.getElementById("name").value!="" && document.getElementById("E-mail").value!=""){
+
+                if(document.getElementById("E-mail").value.includes("@") && document.getElementById("E-mail").value.includes(".")){
+                document.getElementById("hover_success").style.zIndex="2";
+                document.getElementById("name-tooltip").style.visibility="hidden";
+                document.getElementById("email-tooltip").style.visibility="hidden";
+                var tableBody = document.getElementById("info");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");  
+                var row = document.createElement("tr");
+                td1.innerHTML = document.getElementById("name").value;
+                data.name.push(td1.innerHTML);
+                td1.style.cssText="font-family: Montserrat, sans-serif;"
+                td2.innerHTML  = document.getElementById("E-mail").value;
+                data.mail.push(td2.innerHTML )
+                td2.style.cssText="font-family: Montserrat, sans-serif;"
+                row.appendChild(td1);
+                row.appendChild(td2);
+                
+                tableBody.appendChild(row);
+                document.getElementById("E-mail").value="";
+                document.getElementById("name").value="";
+                }
+                }
+            }
+
+            function downloadData(){
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+                var dlAnchorElem = document.getElementById('download');
+                dlAnchorElem.setAttribute("href",     dataStr     );
+                dlAnchorElem.setAttribute("download", "data.json");
+            }
+            </script>
+        </body>
+
+
+       
+
+</html>
